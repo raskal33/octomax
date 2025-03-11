@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { getBetOfTheDayMatchByDate, evaluatePrediction, MatchData } from "@/app/ai-matches/services/matchService";
 import { calculateDate } from "@/app/ai-matches/utils";
 
@@ -175,18 +176,21 @@ function ResultSelector({
   );
 }
 
-export default function MatchesAdmin() {
+export default function AdminMatchesPage() {
   const [selectedDate, setSelectedDate] = useState<string>("0"); // Use "0" for Today
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [saveStatus, setSaveStatus] = useState<string | null>(null);
   const [categories, setCategories] = useState<{ [key: string]: string[] }>({});
   const [scores, setScores] = useState<{ [key: string]: string }>({});
+  const [mounted, setMounted] = useState(true);
 
-  // Fetch matches when date changes
+  // Fix useEffect dependency
   useEffect(() => {
-    fetchMatches();
-  }, [selectedDate]);
+    if (mounted) {
+      fetchMatches();
+    }
+  }, [mounted]); // fetchMatches is defined in the component scope
 
   // Function to fetch matches
   const fetchMatches = async () => {
