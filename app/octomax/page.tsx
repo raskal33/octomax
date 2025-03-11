@@ -155,7 +155,6 @@ export default function Page() {
   const [isVisible, setIsVisible] = useState(false);
   const [entryFee, setEntryFee] = useState(0.1);
   const darkMode = usePreferences((state) => state.darkMode);
-  // Add countdown state
   const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number }>({ hours: 0, minutes: 0, seconds: 0 });
   const [isExpired, setIsExpired] = useState(false);
   
@@ -168,12 +167,11 @@ export default function Page() {
   const pixelatedValueClass = pixelatedTextClass + " [text-shadow:1px_1px_0px_rgba(0,0,0,0.8)]";
   
   // Simulated pool data
-  const [poolData, setPoolData] = useState({
-    totalPool: 650, // Total pool in SOL (accumulated from entry fees)
+  const [poolData] = useState({
+    totalPool: 650,
     participantCount: 430,
-    highestOdd: 1250.75, // Highest odd in the pool
-    minCorrectPredictions: 5, // Minimum correct predictions required to qualify
-    // Prize distribution percentages
+    highestOdd: 1250.75,
+    minCorrectPredictions: 5,
     prizeDistribution: {
       first: 40,
       second: 30,
@@ -253,7 +251,7 @@ export default function Page() {
   };
   
   // Function to calculate potential payout from the pool
-  const calculatePotentialPayout = (userOdds: number, entryAmount: number) => {
+  const calculatePotentialPayout = (userOdds: number) => {
     // Calculate estimated share of the pool based on odds ratio
     const oddsRatio = userOdds / poolData.highestOdd;
     const estimatedShare = Math.min(0.4, oddsRatio); // Cap at 40% (first place)
@@ -781,7 +779,7 @@ export default function Page() {
                               </div>
                               <div className="flex justify-between items-center">
                                 <p className="text-gray-300 pixel-text-sm">Est. Payout:</p>
-                                <p className="text-[#14F195] font-bold pixel-text-value">{calculatePotentialPayout(Number(totalOdd), entryFee)} SOL</p>
+                                <p className="text-[#14F195] font-bold pixel-text-value">{calculatePotentialPayout(Number(totalOdd))} SOL</p>
                               </div>
                               <div className="mt-3 text-xs text-gray-400 text-center">
                                 Top 5 slips with highest odds share the prize pool
