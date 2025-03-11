@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "motion/react";
 import dynamic from "next/dynamic";
+import { useWallet } from "use-wallet";
 
 // Dynamically import the wallet components
 const WalletComponents = dynamic(
@@ -21,11 +22,11 @@ export default function AdminLayout({
   const [mounted, setMounted] = useState(false);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   
   // Router hook
   const router = useRouter();
+  const { publicKey } = useWallet();
 
   // Set mounted on client side
   useEffect(() => {
@@ -46,7 +47,6 @@ export default function AdminLayout({
   const handleWalletStatus = (connected: boolean, address: string | null) => {
     console.log("Wallet status changed:", { connected, address });
     setIsConnected(connected);
-    setWalletAddress(address);
     
     // Reset admin status when wallet changes
     if (!connected || !address) {
@@ -101,6 +101,12 @@ export default function AdminLayout({
       router.push("/");
     }
   }, [isAdmin, isConnected, router, mounted]);
+
+  useEffect(() => {
+    if (!publicKey) {
+      router.push("/");
+    }
+  }, [publicKey, router]);
 
   // Show loading spinner until client-side rendering is ready
   if (!mounted) {

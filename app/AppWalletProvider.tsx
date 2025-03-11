@@ -32,19 +32,15 @@ export default function AppWalletProvider({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Use state to track if we're on the client
+  // Can't render wallet stuff server side
   const [mounted, setMounted] = useState(false);
-
-  // Set mounted to true when component mounts on client
   useEffect(() => {
     setMounted(true);
-    console.log("AppWalletProvider mounted");
   }, []);
 
-  const network = WalletAdapterNetwork.Devnet;
+  const network = WalletAdapterNetwork.Mainnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
-  // Only include the most common wallets to reduce bundle size
   const wallets = useMemo(
     () => [
       new PhantomWalletAdapter(),
@@ -53,7 +49,7 @@ export default function AppWalletProvider({
       new LedgerWalletAdapter(),
       new SolongWalletAdapter(),
     ],
-    [network]
+    [] // Removed network dependency as it's not used in the wallet creation
   );
 
   // Don't render anything until mounted on client
