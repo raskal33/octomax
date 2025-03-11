@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/button";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { usePreferences } from "@/store/usePreferences";
 

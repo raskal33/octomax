@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { calculateDate, formatDate } from "./utils";
 import { getBetOfTheDayMatchByDate, evaluatePrediction } from "./services/matchService";
 
