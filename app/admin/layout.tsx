@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "motion/react";
 import dynamic from "next/dynamic";
-import { useWallet } from "use-wallet";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 // Dynamically import the wallet components
 const WalletComponents = dynamic(
@@ -22,18 +22,16 @@ export default function AdminLayout({
   const [mounted, setMounted] = useState(false);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isConnected, setIsConnected] = useState(false);
+  const { connected, publicKey } = useWallet();
   
   // Router hook
   const router = useRouter();
-  const { publicKey } = useWallet();
 
   // Set mounted on client side
   useEffect(() => {
     setMounted(true);
     
     // Set initial loading state to false after a short delay
-    // This prevents infinite loading if wallet components don't load properly
     const timer = setTimeout(() => {
       if (isLoading) {
         setIsLoading(false);
@@ -43,22 +41,6 @@ export default function AdminLayout({
     return () => clearTimeout(timer);
   }, [isLoading]);
 
-  // Handle wallet connection status
-  const handleWalletStatus = (connected: boolean, address: string | null) => {
-    console.log("Wallet status changed:", { connected, address });
-    setIsConnected(connected);
-    
-    // Reset admin status when wallet changes
-    if (!connected || !address) {
-      setIsAdmin(false);
-      setIsLoading(false);
-      return;
-    }
-    
-    // Check if wallet is admin
-    checkAdminStatus(address);
-  };
-  
   // Check if wallet is admin
   const checkAdminStatus = (address: string) => {
     setIsLoading(true);
@@ -74,13 +56,7 @@ export default function AdminLayout({
       }
       
       const adminWallets = JSON.parse(adminWalletsStr);
-      
-      console.log("Current wallet:", address);
-      console.log("Admin wallets:", adminWallets);
-      
-      // Check if the current wallet is in the admin list
       const isAdminWallet = adminWallets.includes(address);
-      console.log("Is admin wallet?", isAdminWallet);
       
       setIsAdmin(isAdminWallet);
       setIsLoading(false);
@@ -91,22 +67,17 @@ export default function AdminLayout({
     }
   };
 
-  // Handle redirect logic
+  // Handle wallet connection changes
   useEffect(() => {
     if (!mounted) return;
-    
-    // Only redirect if we've confirmed user is not an admin
-    if (isConnected && isAdmin === false) {
-      console.log("Redirecting non-admin user to home");
-      router.push("/");
-    }
-  }, [isAdmin, isConnected, router, mounted]);
 
-  useEffect(() => {
-    if (!publicKey) {
+    if (connected && publicKey) {
+      checkAdminStatus(publicKey.toString());
+    } else {
+      setIsAdmin(false);
       router.push("/");
     }
-  }, [publicKey, router]);
+  }, [connected, publicKey, mounted, router]);
 
   // Show loading spinner until client-side rendering is ready
   if (!mounted) {
@@ -150,10 +121,10 @@ export default function AdminLayout({
           <div className="flex justify-center items-center h-64">
             <div className="w-16 h-16 border-4 border-[#9945FF] border-t-transparent rounded-full animate-spin"></div>
           </div>
-        ) : !isConnected ? (
+        ) : !connected ? (
           <div className="flex flex-col items-center justify-center h-64">
             <p className="text-gray-400 mb-4">Please connect your wallet to access the admin dashboard.</p>
-            <WalletComponents onWalletStatusChange={handleWalletStatus} />
+            <WalletComponents onWalletStatusChange={() => {}} />
           </div>
         ) : !isAdmin ? (
           <div className="flex justify-center items-center h-64">
