@@ -1,0 +1,108 @@
+/* Profile Page Specific Styles with Highest Specificity */
+
+/* Profile Stats Container */
+#profile-stats-container {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 1.5rem !important;
+  margin-top: 1rem !important;
+}
+
+/* Profile Stat Boxes - General */
+.profile-stat-box {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 0.75rem !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.3s ease !important;
+  transform: scale(1) !important;
+}
+
+/* First stat box (Total Bets) */
+.profile-stat-box-1 {
+  background: linear-gradient(to bottom right, #121212, rgba(20, 241, 149, 0.2)) !important;
+}
+
+.profile-stat-box-1:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 10px rgba(20, 241, 149, 0.3) !important;
+}
+
+.profile-stat-value-1 {
+  color: #14F195 !important;
+  font-weight: bold !important;
+  font-size: 1.25rem !important;
+  font-family: 'VT323', 'Press Start 2P', monospace !important;
+  letter-spacing: 1px !important;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.8) !important;
+}
+
+/* Second stat box (Win Rate) */
+.profile-stat-box-2 {
+  background: linear-gradient(to bottom right, #121212, rgba(153, 69, 255, 0.2)) !important;
+}
+
+.profile-stat-box-2:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 10px rgba(153, 69, 255, 0.3) !important;
+}
+
+.profile-stat-value-2 {
+  color: #9945FF !important;
+  font-weight: bold !important;
+  font-size: 1.25rem !important;
+  font-family: 'VT323', 'Press Start 2P', monospace !important;
+  letter-spacing: 1px !important;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.8) !important;
+}
+
+/* Third stat box (SOL Profit) */
+.profile-stat-box-3 {
+  background: linear-gradient(to bottom right, #121212, rgba(0, 194, 255, 0.2)) !important;
+}
+
+.profile-stat-box-3:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 10px rgba(0, 194, 255, 0.3) !important;
+}
+
+.profile-stat-value-3 {
+  color: #00C2FF !important;
+  font-weight: bold !important;
+  font-size: 1.25rem !important;
+  font-family: 'VT323', 'Press Start 2P', monospace !important;
+  letter-spacing: 1px !important;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.8) !important;
+}
+
+/* Pixelated text styles */
+.pixelated-text, .pixelated-text * {
+  font-family: 'VT323', 'Press Start 2P', monospace !important;
+  letter-spacing: 1px !important;
+  image-rendering: pixelated !important;
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5) !important;
+}
+
+/* Force styles to be applied after hydration */
+@keyframes forceRepaint {
+  0% { opacity: 0.99999; }
+  100% { opacity: 1; }
+}
+
+.profile-page {
+  animation: forceRepaint 0.1s forwards;
+}
+
+/* Override any conflicting styles */
+.profile-page * {
+  box-sizing: border-box !important;
+}
+
+/* Ensure text colors are visible */
+.profile-page .text-gray-400 {
+  color: #A0A0A0 !important;
+} 

@@ -1,0 +1,74 @@
+/* Import Solana Wallet Adapter styles */
+@import '@solana/wallet-adapter-react-ui/styles.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Basic styling for the app */
+html, body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Pixelated border utility */
+.pixelated-border {
+  border-style: solid;
+  border-width: 4px;
+  border-image-slice: 2;
+  border-image-width: 2;
+  border-image-outset: 0;
+  border-image-source: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6'><path d='M0 2h2v2H0zM2 0h2v2H2zM4 2h2v2H4zM2 4h2v2H2z' fill='%239945FF' /></svg>");
+  border-image-repeat: stretch;
+  image-rendering: pixelated;
+}
+
+/* Pixelated button */
+.pixelated-button {
+  position: relative;
+  padding: 8px 16px;
+  background-color: #9945FF;
+  color: white;
+  text-transform: uppercase;
+  transition: all 0.1s ease;
+  box-shadow: 0 4px 0 #6B2FBF;
+}
+
+.pixelated-button:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #6B2FBF;
+}
+
+.pixelated-button:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+/* Pixelated separator */
+.pixelated-separator {
+  height: 4px;
+  background: repeating-linear-gradient(
+    to right,
+    #9945FF,
+    #9945FF 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  image-rendering: pixelated;
+}

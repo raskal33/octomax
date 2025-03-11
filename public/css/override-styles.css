@@ -1,0 +1,82 @@
+/* Override styles with highest specificity */
+
+/* HEADER NAVIGATION LINKS */
+html body header a[href].header-active-link {
+  color: #14F195 !important;
+  font-weight: bold !important;
+  font-size: 1rem !important;
+}
+
+@media (min-width: 768px) {
+  html body header a[href].header-active-link {
+    font-size: 1.125rem !important;
+  }
+}
+
+html body header a[href].header-inactive-link {
+  color: white !important;
+  font-size: 1rem !important;
+}
+
+@media (min-width: 768px) {
+  html body header a[href].header-inactive-link {
+    font-size: 1.125rem !important;
+  }
+}
+
+html body header a[href].header-inactive-link:hover {
+  color: #9945FF !important;
+}
+
+/* PROFILE PAGE STAT BOXES */
+html body main .profile-stats-container .profile-stat-box {
+  background-image: var(--tw-gradient-stops) !important;
+  transform: scale(1) !important;
+  transition: all 0.3s !important;
+}
+
+html body main .profile-stats-container .profile-stat-box:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 10px rgba(20, 241, 149, 0.3) !important;
+}
+
+html body main .profile-stats-container .profile-stat-box:nth-child(1) span:first-child {
+  color: #14F195 !important;
+}
+
+html body main .profile-stats-container .profile-stat-box:nth-child(2) span:first-child {
+  color: #9945FF !important;
+}
+
+html body main .profile-stats-container .profile-stat-box:nth-child(3) span:first-child {
+  color: #00C2FF !important;
+}
+
+html body main .profile-stats-container .profile-stat-box:nth-child(1):hover {
+  box-shadow: 0 0 10px rgba(20, 241, 149, 0.3) !important;
+}
+
+html body main .profile-stats-container .profile-stat-box:nth-child(2):hover {
+  box-shadow: 0 0 10px rgba(153, 69, 255, 0.3) !important;
+}
+
+html body main .profile-stats-container .profile-stat-box:nth-child(3):hover {
+  box-shadow: 0 0 10px rgba(0, 194, 255, 0.3) !important;
+}
+
+/* WALLET BUTTON */
+html body .wallet-button-custom,
+html body button.wallet-adapter-button {
+  font-size: 0.9rem !important;
+  background-color: transparent !important;
+}
+
+/* Force styles to be applied after hydration */
+@keyframes forceRepaint {
+  0% { opacity: 0.99999; }
+  100% { opacity: 1; }
+}
+
+html body {
+  animation: forceRepaint 0.1s forwards;
+} 

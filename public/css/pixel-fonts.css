@@ -1,0 +1,99 @@
+/* Pixel Fonts CSS */
+
+/* Import pixelated fonts */
+@font-face {
+  font-family: 'VT323';
+  src: url('https://fonts.gstatic.com/s/vt323/v17/pxiKyp0ihIEF2isfFJU.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Force pixelated rendering on all text */
+* {
+  image-rendering: pixelated !important;
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+  text-rendering: geometricPrecision !important;
+}
+
+html, body {
+  image-rendering: pixelated !important;
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+}
+
+/* Override all text elements */
+p, span, div, a, h1, h2, h3, h4, h5, h6, button, input, textarea, select, label {
+  font-family: 'VT323', 'Press Start 2P', monospace !important;
+  letter-spacing: 1px !important;
+  image-rendering: pixelated !important;
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5) !important;
+}
+
+/* Headings and buttons */
+h1, h2, h3, h4, h5, h6, button {
+  font-family: 'Press Start 2P', 'VT323', monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.8) !important;
+}
+
+/* Apply pixelated rendering to all text */
+html, body, h1, h2, h3, h4, h5, h6, p, span, div, button, input, a {
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+  text-rendering: geometricPrecision !important;
+}
+
+/* Pixelated text class */
+.pixelated-text, .pixelated-text * {
+  -webkit-font-smoothing: none !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+  text-rendering: geometricPrecision !important;
+}
+
+/* Pixelated rendering for specific elements */
+.pixelated, .pixelated * {
+  image-rendering: pixelated !important;
+  image-rendering: -moz-crisp-edges !important;
+  image-rendering: crisp-edges !important;
+  -ms-interpolation-mode: nearest-neighbor !important;
+}
+
+/* Ensure buttons and interactive elements maintain pixelated look */
+button, .btn, a.btn {
+  font-family: 'VT323', 'Press Start 2P', monospace !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Headings with pixelated style */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Press Start 2P', 'VT323', monospace !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Fix for Firefox */
+@-moz-document url-prefix() {
+  html, body, h1, h2, h3, h4, h5, h6, p, span, div, button, input, a {
+    font-smooth: never !important;
+    -moz-osx-font-smoothing: grayscale !important;
+  }
+} 
