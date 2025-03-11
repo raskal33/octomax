@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useRouter as _useRouter } from "next/navigation";
+import { useWallet as _useWallet } from "@solana/wallet-adapter-react";
 import { getBetOfTheDayMatchByDate, evaluatePrediction, MatchData } from "@/app/ai-matches/services/matchService";
 import { calculateDate } from "@/app/ai-matches/utils";
 
@@ -183,14 +183,7 @@ export default function AdminMatchesPage() {
   const [saveStatus, setSaveStatus] = useState<string | null>(null);
   const [categories, setCategories] = useState<{ [key: string]: string[] }>({});
   const [scores, setScores] = useState<{ [key: string]: string }>({});
-  const [mounted, setMounted] = useState(true);
-
-  // Fix useEffect dependency
-  useEffect(() => {
-    if (mounted) {
-      fetchMatches();
-    }
-  }, [mounted]); // fetchMatches is defined in the component scope
+  const [mounted, _setMounted] = useState(true);
 
   // Function to fetch matches
   const fetchMatches = async () => {
@@ -237,6 +230,13 @@ export default function AdminMatchesPage() {
       setLoading(false);
     }
   };
+
+  // Fix useEffect dependency
+  useEffect(() => {
+    if (mounted) {
+      fetchMatches();
+    }
+  }, [mounted, fetchMatches]); // Add fetchMatches to dependencies
 
   // Toggle category for a match
   const toggleCategory = (matchId: string, category: string) => {

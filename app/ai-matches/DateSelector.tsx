@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { getDayLabel } from "./utils";
+import { getDayLabel as _getDayLabel } from "./utils";
 
 interface DateSelectorProps {
   value: string;

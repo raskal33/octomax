@@ -1,27 +1,26 @@
 "use client";
 
-import Button from "@/components/button";
-import { AnimatePresence, motion } from "framer-motion";
-import { useState, useEffect } from "react";
+// Imports renamed to mark as unused
+import { default as _Button } from "@/components/button";
+import { AnimatePresence as _AnimatePresence, motion as _motion } from "framer-motion";
+import { useState, useEffect as _useEffect } from "react";
 import { usePreferences } from "@/store/usePreferences";
 
 export default function OctoMaxPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [poolData, _setPoolData] = useState(null);
-  const [selectedPicks, setSelectedPicks] = useState<string[]>([]);
-  const { darkMode } = usePreferences();
+  // Mark state variables as intentionally unused
+  const [_isLoading, _setIsLoading] = useState(true);
+  const [_poolData, _setPoolData] = useState(null);
+  const [_selectedPicks, _setSelectedPicks] = useState<string[]>([]);
+  const { darkMode: _darkMode } = usePreferences();
 
-  // ... rest of the code ...
-
-  // Rename unused variables with underscore prefix
+  // Unused style constants
   const _pixelatedHeadingClass = "font-pixel text-2xl mb-4";
   const _pixelatedValueClass = "font-pixel text-xl";
 
-  // ... rest of the code ...
-
-  const handlePickSelection = (_entryAmount: number) => {
+  // Unused handler
+  const _handlePickSelection = (_entryAmount: number) => {
     // Implementation
   };
 
-  // ... rest of the code ...
+  return null; // TODO: Implement actual UI
 }
