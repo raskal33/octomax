@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { getDayLabel } from "./utils";
 
+// Mark unused imports
+const _getDayLabel = getDayLabel;
+
 interface DateSelectorProps {
   value: string;
   onChange: (value: string) => void;

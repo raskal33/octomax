@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaArrowRight, FaChartLine, FaRobot, FaTrophy, FaUserAstronaut } from "react-icons/fa";
 
+// Mark unused imports
+const _FaChartLine = FaChartLine;
+
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
 

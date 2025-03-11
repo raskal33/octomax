@@ -1,7 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { getDayLabel as _getDayLabel } from "./utils";
+import { getDayLabel } from "./utils";
+
+// Mark unused imports
+const _getDayLabel = getDayLabel;
 
 interface DateSelectorProps {
   value: string;

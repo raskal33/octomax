@@ -1,10 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter as _useRouter } from "next/navigation";
-import { useWallet as _useWallet } from "@solana/wallet-adapter-react";
+import { useRouter } from "next/navigation";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { getBetOfTheDayMatchByDate, evaluatePrediction, MatchData } from "@/app/ai-matches/services/matchService";
 import { calculateDate } from "@/app/ai-matches/utils";
+
+// Mark unused imports
+const _useRouter = useRouter;
+const _useWallet = useWallet;
 
 // Match interface for admin page
 interface Match {

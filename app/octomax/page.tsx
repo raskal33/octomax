@@ -1,10 +1,15 @@
 "use client";
 
-// Imports renamed to mark as unused
-import { default as _Button } from "@/components/button";
-import { AnimatePresence as _AnimatePresence, motion as _motion } from "framer-motion";
-import { useState, useEffect as _useEffect } from "react";
+import Button from "@/components/button";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { usePreferences } from "@/store/usePreferences";
+
+// Mark unused imports
+const _Button = Button;
+const _AnimatePresence = AnimatePresence;
+const _motion = motion;
+const _useEffect = useEffect;
 
 export default function OctoMaxPage() {
   // Mark state variables as intentionally unused

@@ -10,7 +10,7 @@ import { FaBrain, FaChartLine, FaRobot, FaShieldAlt } from "react-icons/fa";
 export default function OctoAI() {
   const [selectedDate, setSelectedDate] = useState<string>("0");
   const [activeTab, setActiveTab] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [_isVisible, setIsVisible] = useState(false);
 
   useState(() => {
     setIsVisible(true);

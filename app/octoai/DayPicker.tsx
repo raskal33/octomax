@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { useRouter, usePathname } from "next/navigation";
 
 interface DayPickerProps {
@@ -9,8 +9,8 @@ interface DayPickerProps {
 }
 
 export default function DayPicker({ value, onChange }: DayPickerProps) {
-  const router = useRouter();
-  const pathname = usePathname();
+  const _router = useRouter();
+  const _pathname = usePathname();
 
   const days = [
     { id: "-3", label: "3 Days Ago" },

@@ -10,7 +10,7 @@ export default function Nav() {
     <div className={`col-span-full flex flex-wrap justify-center gap-4`}>
       {links.map((e, i) => (
         <Link key={i} href={e.href}>
-          <Button variant={e.segment == segment ? "primary" : "dark"}>
+          <Button variant={e.segment == segment ? "primary" : "secondary"}>
             {e.label}
           </Button>
         </Link>
